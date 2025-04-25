@@ -20,9 +20,9 @@ const Footer = () =>{
         <div className="footer-social">
           <h4>Follow Us</h4>
           <div className="social-icons">
-            <a href="#"><img src="/images/facebook.svg" alt="Facebook" /></a>
-            <a href="#"><img src="/images/instagram.svg" alt="Instagram" /></a>
-            <a href="#"><img src="/images/twitter.svg" alt="Twitter" /></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000" alt="Facebook" /></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" /></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=bG29Ckcdp6YP&format=png&color=000000" alt="Twitter" /></a>
           </div>
         </div>
       </div>

@@ -9,8 +9,9 @@ const Header =()=>{
 
     <nav className="site-nav">
       <Link to={'/'}>Home</Link>
-      <Link to='/'>Books</Link>
-      <Link about='/'>Person</Link>
+      <Link to='/book-list'>Books</Link>
+      <Link to='/#'>Person</Link>
+      <Link to='/about'>About</Link>
       <Link>Contact</Link>
     </nav>
 

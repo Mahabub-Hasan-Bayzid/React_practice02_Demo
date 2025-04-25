@@ -17,7 +17,7 @@ const BookList = () => {
     setBooksData(updatedArray)
   }
   const toggleFavorite = (id)=>{
-    setBooksData(prevBooks =>
+    setBooksData((prevBooks) =>
       prevBooks.map((book)=> book.id === id? {...book, isFavorite: !book.isFavorite} : book)
     )
     
@@ -27,7 +27,7 @@ const BookList = () => {
   }
 
   const handleUpdatePrice = (id,newPrice)=>{
-    setBooksData((prevBooks).map(book=> book.id === id ? {...book, price: parseFloat(newPrice)} : book));
+    setBooksData((prevBooks)=> prevBooks.map(book=> book.id === id ? {...book, price: parseFloat(newPrice)} : book));
   }
 
 

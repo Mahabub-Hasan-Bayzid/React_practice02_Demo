@@ -19,13 +19,13 @@ h2 {
 .book-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
+  gap: 20px;
   padding: 2rem;
   justify-items: center;
 }
 
 /* PERSON CARD */
-.person-card {
+.book-card {
   display: flex;
   flex-direction: column;
   background-color: #1e1e2f;
@@ -40,25 +40,43 @@ h2 {
   overflow: hidden;
 }
 
-.person-card:hover {
+.book-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
+.title-fav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
 
-.person-card h3 {
+.title-fav h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #f0f0f5;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
-.person-card p {
+.book-card p {
   margin: 0.4rem 0;
   font-size: 0.95rem;
   line-height: 1.5;
   word-break: break-word;
 }
 
-.person-card strong {
+
+.book-card strong {
   color: #ffcc00;
 }
 
@@ -112,13 +130,13 @@ h2 {
 }
 
 /* SVG Icons */
-.person-card svg {
+.book-card svg {
   cursor: pointer;
   transition: transform 0.3s ease;
   margin-bottom: 0.5rem;
 }
 
-.person-card svg:hover {
+.book-card svg:hover {
   transform: scale(1.2);
 }
 
@@ -170,4 +188,9 @@ h2 {
   margin: 2rem auto;
   max-width: 400px;
   text-align: center;
+}
+
+#newPrice{
+  width: 60px;
+  margin-right: 5px;
 }
