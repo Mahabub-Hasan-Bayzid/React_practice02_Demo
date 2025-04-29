@@ -1,4 +1,5 @@
 import './header.css';
+import { NavLink } from 'react-router';
 import { Link } from 'react-router';
 
 const Header =()=>{
@@ -8,11 +9,12 @@ const Header =()=>{
     <div className="logo">Book<span>Store</span></div>
 
     <nav className="site-nav">
-      <Link to={'/'}>Home</Link>
-      <Link to='/book-list'>Books</Link>
-      <Link to='/#'>Person</Link>
-      <Link to='/about'>About</Link>
-      <Link>Contact</Link>
+      <NavLink to={'/'}>Home</NavLink>
+      <NavLink to='/book-list'>Books</NavLink>
+      <NavLink to='/add-book'>Add Book</NavLink>
+      <NavLink to='#'>Person</NavLink>
+      <NavLink to='/about'>About</NavLink>
+      <NavLink>Contact</NavLink>
     </nav>
 
     <div className="cart-icon">

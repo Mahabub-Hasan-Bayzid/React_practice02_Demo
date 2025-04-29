@@ -41,3 +41,8 @@
 .cart-icon {
   cursor: pointer;
 }
+.active {
+  color: orange;
+  border-bottom: 1px dashed rgb(186, 17, 17);
+}
+

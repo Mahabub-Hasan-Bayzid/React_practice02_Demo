@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-const BookList = () => {
-  const [booksData, setBooksData] = useState(books);
+const BookList = ({booksData,setBooksData}) => {
+  
   const [searchValue, setSearchValue] = useState('');
 
   const eventHandler = (id)=>{
