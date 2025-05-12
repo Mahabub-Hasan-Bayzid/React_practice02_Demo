@@ -4,6 +4,7 @@
   color: #fff;
   padding: 1rem 2rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  height: 10%;
 }
 
 .header-container {
@@ -42,7 +43,8 @@
   cursor: pointer;
 }
 .active {
-  color: orange;
-  border-bottom: 1px dashed rgb(186, 17, 17);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #00f2fe;
+    
 }
 

@@ -1,8 +1,9 @@
 import './Book.css'
 import { useState } from 'react';
+import axios from 'axios';
 
 
-const BookCard = ({id,title,author,price,stock,genre,isFavorite,onEventHandler,ontoggleStock,ontoggleFavorite,onPriceChange, ...rest}) => {
+const BookCard = ({id,title,author,price,stock,genre,isFavorite,onEventHandler,onToggleStock,onToggleFavorite,onPriceChange, ...rest}) => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [newPrice, setNewPrice]= useState(price);
@@ -12,16 +13,32 @@ const BookCard = ({id,title,author,price,stock,genre,isFavorite,onEventHandler,o
 
   }
   const handleSave = ()=>{
-    onPriceChange(id,newPrice)
-    setIsEditing(false);
-  }
+      const updatedBook = {
+        id,
+        title,
+        author,
+        price: parseFloat(newPrice),
+        stock,
+        genre,
+        isFavorite
+      };
+    
+      axios.put(`http://localhost:3001/books/${id}`, updatedBook)
+        .then((res) => {
+          onPriceChange(id, newPrice); 
+        })
+    
+      setIsEditing(false);
+    
+    
+  };
   
   return (
     
     <div className="book-card">
   <div className="card-content">
   <div className="title-fav">
-    <h3>{title}<span onClick={ontoggleFavorite}>
+    <h3>{title}<span className='star' onClick={onToggleFavorite}>
       {isFavorite ? (
         <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="40px" fill="#FFFF55">
           <path d="M333.33-259 480-347l146.67 89-39-166.67 129-112-170-15L480-709l-66.67 156.33-170 15 129 112.34-39 166.33ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-353.33Z"/>
@@ -66,7 +83,7 @@ const BookCard = ({id,title,author,price,stock,genre,isFavorite,onEventHandler,o
 
     <p className='stock'>
       <strong>Stock:</strong> {stock ? "IN Stock" : "Out of Stock"}
-      <svg onClick={()=>ontoggleStock(id)} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFF55" style={{ verticalAlign: 'middle', marginLeft: '4px' }}><path d="M160-160v-80h110l-16-14q-52-46-73-105t-21-119q0-111 66.5-197.5T400-790v84q-72 26-116 88.5T240-478q0 45 17 87.5t53 78.5l10 10v-98h80v240H160Zm400-10v-84q72-26 116-88.5T720-482q0-45-17-87.5T650-648l-10-10v98h-80v-240h240v80H690l16 14q49 49 71.5 106.5T800-482q0 111-66.5 197.5T560-170Z"/></svg></p>
+      <svg onClick={onToggleStock} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFF55" style={{ verticalAlign: 'middle', marginLeft: '4px' }}><path d="M160-160v-80h110l-16-14q-52-46-73-105t-21-119q0-111 66.5-197.5T400-790v84q-72 26-116 88.5T240-478q0 45 17 87.5t53 78.5l10 10v-98h80v240H160Zm400-10v-84q72-26 116-88.5T720-482q0-45-17-87.5T650-648l-10-10v98h-80v-240h240v80H690l16 14q49 49 71.5 106.5T800-482q0 111-66.5 197.5T560-170Z"/></svg></p>
     <p><strong>Genre:</strong> {genre}</p>
   </div>
 

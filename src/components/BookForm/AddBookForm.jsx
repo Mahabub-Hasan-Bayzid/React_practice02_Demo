@@ -1,79 +1,76 @@
-import './AddBookForm.css';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import { useState } from 'react';
+import "./AddBookForm.css";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
+const AddBookForm = ({ onAddBook }) => {
+  // const [title, setTitle]= useState("");
+  // const [author, setAuthor]= useState("");
+  // const [price, setPrice]= useState("");
+  // const [genre, setGenre]= useState("");
 
+  // const  handleSubmit =(e)=>{
+  //     e.preventDefault();
+  //     const newBook ={
+  //         title,author,genre,price: parseFloat(price),
+  //     }
 
+  //     onAddBook(newBook);
+  //     setAuthor("");
+  //     setGenre("");
+  //     setPrice("");
+  //     setTitle("")
 
-const AddBookFrom =({onAddBook})=>{
+  // }
 
-    // const [title, setTitle]= useState("");
-    // const [author, setAuthor]= useState("");
-    // const [price, setPrice]= useState("");
-    // const [genre, setGenre]= useState("");
+  const [fromData, setFromdata] = useState({
+    title: "",
+    genre: "",
+    price: "",
+    author: "",
+  });
 
-    // const  handleSubmit =(e)=>{
-    //     e.preventDefault();
-    //     const newBook ={
-    //         title,author,genre,price: parseFloat(price),
-    //     }
-        
-    //     onAddBook(newBook);
-    //     setAuthor("");
-    //     setGenre("");
-    //     setPrice("");
-    //     setTitle("")
-        
-    // }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFromdata((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const [fromData, setFromdata]= useState({
-        title:"",
-        genre:"",
-        price:"",
-        author:"",
-    })
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newBook = {
+      ...fromData,
+      price: parseFloat(fromData.price),
+    };
+    axios
+      .post("http://localhost:3001/books", newBook)
+      .then((res) => console.log(res));
 
-    const handleChange= (e)=>{
-        const {name,value} = e.target;
-        setFromdata((prev)=> ({...prev, [name]: value}))
-    }
+    setFromdata({ title: "", author: "", price: "", genre: "" });
+  };
 
-    const  handleSubmit =(e)=>{
-            e.preventDefault();
-            const newBook ={
-                ...fromData,price: parseFloat(fromData.price),
-            }
-            onAddBook(newBook);
-            console.log(newBook);
-
-            setFromdata({ title: "", author: "", price: "", genre: "" });
-
-        }
-
-
-    return (
-        <>
-        <Header/>
-        <section className="add-book-wrapper">
-      <h2>Add a New Book</h2>
-      <form className="add-book-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={fromData.title}
-          onChange={handleChange}
-          placeholder="Book Title"
-          required
-        />
-        <input
-          type="text"
-          name="author"
-          value={fromData.author}
-          onChange={handleChange}
-          placeholder="Author"
-          required
-        />
+  return (
+    <>
+      <section className="add-book-wrapper">
+        <h2>Add a New Book</h2>
+        <form className="add-book-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="title"
+            value={fromData.title}
+            onChange={handleChange}
+            placeholder="Book Title"
+            required
+          />
+          <input
+            type="text"
+            name="author"
+            value={fromData.author}
+            onChange={handleChange}
+            placeholder="Author"
+            required
+          />
           <input
             type="genre"
             name="genre"
@@ -82,25 +79,22 @@ const AddBookFrom =({onAddBook})=>{
             placeholder="Genre"
             required
           />
-        <input
-          type="number"
-          name="price"
-          value={fromData.price}
-          onChange={handleChange}
-          placeholder="Price"
-          required
-        />
+          <input
+            type="number"
+            name="price"
+            value={fromData.price}
+            onChange={handleChange}
+            placeholder="Price"
+            required
+          />
 
-        <button type="submit" className="add-book-button">
-          Add Book
-        </button>
-      </form>
-    </section>
-        <Footer/>
-        </>
-    )
+          <button type="submit" className="add-book-button">
+            Add Book
+          </button>
+        </form>
+      </section>
+    </>
+  );
 };
 
-
-
-export default AddBookFrom;
+export default AddBookForm;
